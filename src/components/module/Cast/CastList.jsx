@@ -20,7 +20,7 @@ const CastList = ({ credits }) => {
       }
     };
     fetchImageSettings();
-  }, []);
+  }, [profile]);
 
   const size = () => {
     if (!profile_sizes?.length) {

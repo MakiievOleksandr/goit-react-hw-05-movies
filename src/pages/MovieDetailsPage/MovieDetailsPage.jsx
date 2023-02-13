@@ -61,7 +61,7 @@ const MovieDetailsPage = () => {
     };
     fetchMovieDetails();
     fetchImageSettings();
-  }, []);
+  }, [details, image, movieId]);
 
   const handleBack = evt => {
     navigate(-1);

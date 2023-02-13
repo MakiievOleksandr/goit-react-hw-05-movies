@@ -23,7 +23,7 @@ const Cast = () => {
       }
     };
     fetchMovieCast();
-  }, []);
+  }, [credits, movieId]); //dependencies
 
   const handleBack = evt => {
     navigate(-1);

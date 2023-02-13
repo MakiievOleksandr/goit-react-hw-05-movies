@@ -24,7 +24,7 @@ const Reviews = () => {
     };
 
     fetchReview();
-  }, []);
+  }, [movieId, reviews]);
 
   const handleBack = evt => {
     navigate(-1);
