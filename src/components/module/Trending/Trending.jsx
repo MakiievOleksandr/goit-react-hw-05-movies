@@ -7,18 +7,13 @@ import scss from './trending.module.scss';
 
 const Trending = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('popular');
 
   useEffect(() => {
-    // if (!movies) {
-    //   return;
-    // }
     const fetchMovies = async () => {
+      const query = 'popular';
       try {
         const { results } = await getPopularMovie(query);
         setMovies([...results]);
-        // console.log(query);
-        // console.log(results);
       } catch (error) {
         console.log(error.message);
       } finally {

@@ -4,11 +4,8 @@ import { useSearchParams, Link } from 'react-router-dom';
 import SearchMovieForm from 'components/module/SearchMovieForm/SearchMovieForm';
 
 import { getMovies } from 'components/shared/services/movies-api';
-// import MovieDetails from 'components/module/MovieDetails/MovieDetails';
-// import MovieDetailsPage from 'pages/MovieDetailsPage/MovieDetailsPage';
 
 const MoviesPage = () => {
-  // const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('query');
@@ -36,7 +33,6 @@ const MoviesPage = () => {
 
   return (
     <>
-      {/* <MovieDetailsPage /> */}
       <SearchMovieForm onSubmit={handleSubmit} />
       <ul>
         {movies.map(({ title, id }) => (
