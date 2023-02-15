@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import ReviewList from './ReviewList';
 
@@ -8,12 +8,9 @@ import { getReviews } from 'components/shared/services/movies-api';
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    // if (!reviews) {
-    //   return;
-    // }
+ 
     const fetchReview = async () => {
       try {
         const { results } = await getReviews(movieId);
