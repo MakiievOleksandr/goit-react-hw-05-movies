@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { getImagesSettings } from 'components/shared/services/movies-api';
 
@@ -35,3 +36,7 @@ const CastList = ({ credits }) => {
   ));
 };
 export default CastList;
+
+CastList.propTypes = {
+  credits: PropTypes.array.isRequired,
+};

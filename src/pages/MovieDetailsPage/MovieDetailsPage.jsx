@@ -19,6 +19,7 @@ const MovieDetailsPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { from } = location.state;
+  // ?.from || '/';
 
   const genresString = () => {
     if (!genres?.length) {
@@ -63,11 +64,6 @@ const MovieDetailsPage = () => {
     fetchImageSettings();
   }, []);
 
-  // const handleBack = evt => {
-  //   navigate(from);
-  //   setDetails({});
-  //   setImage({});
-  // };
   const handleBack = useCallback(() => navigate(from), [navigate, from]);
 
   return (
