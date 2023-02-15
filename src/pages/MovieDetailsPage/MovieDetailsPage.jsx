@@ -18,6 +18,8 @@ const MovieDetailsPage = () => {
   const { base_url, poster_sizes } = image;
   const navigate = useNavigate();
 
+  console.log(details);
+
   const genresString = () => {
     if (!genres?.length) {
       return;
@@ -35,21 +37,19 @@ const MovieDetailsPage = () => {
   };
 
   useEffect(() => {
-    if (!details) {
-      return;
-    }
     const fetchMovieDetails = async () => {
       try {
         const details = await getMovieDetails(movieId);
-        setDetails(details);
+        setDetails(prevState => ({ ...prevState, ...details }));
       } catch (error) {
         console.log(error.message);
       } finally {
       }
     };
-    if (!image) {
-      return;
-    }
+    fetchMovieDetails();
+  }, [movieId]);
+
+  useEffect(() => {
     const fetchImageSettings = async () => {
       try {
         const { images } = await getImagesSettings();
@@ -59,9 +59,9 @@ const MovieDetailsPage = () => {
       } finally {
       }
     };
-    fetchMovieDetails();
+
     fetchImageSettings();
-  }, [details, image, movieId]);
+  }, []);
 
   const handleBack = evt => {
     navigate(-1);

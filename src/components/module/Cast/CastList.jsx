@@ -7,9 +7,6 @@ const CastList = ({ credits }) => {
   const { base_url, profile_sizes } = profile;
 
   useEffect(() => {
-    if (!profile) {
-      return;
-    }
     const fetchImageSettings = async () => {
       try {
         const { images } = await getImagesSettings();
@@ -20,7 +17,7 @@ const CastList = ({ credits }) => {
       }
     };
     fetchImageSettings();
-  }, [profile]);
+  }, []);
 
   const size = () => {
     if (!profile_sizes?.length) {

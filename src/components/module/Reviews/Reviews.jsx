@@ -11,9 +11,9 @@ const Reviews = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!reviews) {
-      return;
-    }
+    // if (!reviews) {
+    //   return;
+    // }
     const fetchReview = async () => {
       try {
         const { results } = await getReviews(movieId);
@@ -24,7 +24,7 @@ const Reviews = () => {
     };
 
     fetchReview();
-  }, [movieId, reviews]);
+  }, [movieId]);
 
   const handleBack = evt => {
     navigate(-1);

@@ -11,9 +11,6 @@ const Cast = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!credits) {
-      return;
-    }
     const fetchMovieCast = async () => {
       try {
         const { cast } = await getMovieCast(movieId);
@@ -23,7 +20,7 @@ const Cast = () => {
       }
     };
     fetchMovieCast();
-  }, [credits, movieId]); //dependencies
+  }, [movieId]); //dependencies
 
   const handleBack = evt => {
     navigate(-1);
