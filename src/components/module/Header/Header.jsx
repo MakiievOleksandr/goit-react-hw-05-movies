@@ -1,22 +1,25 @@
 import { NavLink } from 'react-router-dom';
 
+import items from './items';
+
 import scss from './header.module.scss';
 
 const Header = () => {
+  const getFullClassName = ({ isActive }) => {
+    return isActive ? `${scss.link} ${scss.active}` : scss.link;
+  };
+
+  const elements = items.map(({ id, text, link }) => (
+    <li key={id}>
+      <NavLink to={link} className={getFullClassName}>
+        {text}
+      </NavLink>
+    </li>
+  ));
+
   return (
     <header className={scss.header}>
-      <ul className={scss.list}>
-        <li>
-          <NavLink to="/" className={scss.link}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/movies" className={scss.link}>
-            Movies
-          </NavLink>
-        </li>
-      </ul>
+      <ul className={scss.list}>{elements}</ul>
     </header>
   );
 };

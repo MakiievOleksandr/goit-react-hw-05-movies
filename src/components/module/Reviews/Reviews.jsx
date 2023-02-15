@@ -26,15 +26,8 @@ const Reviews = () => {
     fetchReview();
   }, [movieId]);
 
-  const handleBack = evt => {
-    navigate(-1);
-  };
-
   return (
     <div>
-      <button type="button" onClick={handleBack}>
-        Go back
-      </button>
       <h2>Reviews</h2>
       <ul>
         {reviews?.length > 0 ? (

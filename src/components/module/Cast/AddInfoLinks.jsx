@@ -1,16 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const AddInfoLinks = () => {
+  const location = useLocation();
+  const { from } = location.state;
+
   return (
     <>
       <div>
         <p>Additional information</p>
         <ul>
           <li>
-            <NavLink to="cast">Cast</NavLink>
+            <Link to="cast" state={{ from }}>
+              Cast
+            </Link>
           </li>
           <li>
-            <NavLink to="reviews">Reviews</NavLink>
+            <Link to="reviews" state={{ from }}>
+              Reviews
+            </Link>
           </li>
         </ul>
       </div>

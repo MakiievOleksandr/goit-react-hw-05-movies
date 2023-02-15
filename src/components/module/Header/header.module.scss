@@ -17,6 +17,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.link:global(.active) {
+.link.active {
   color: red;
 }

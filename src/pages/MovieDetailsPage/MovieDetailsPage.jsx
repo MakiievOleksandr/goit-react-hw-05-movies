@@ -1,5 +1,5 @@
-import { useParams, useNavigate, Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
 
 import AddInfoLinks from 'components/module/Cast/AddInfoLinks';
 
@@ -17,8 +17,8 @@ const MovieDetailsPage = () => {
   const { title, poster_path, vote_average, overview, genres } = details;
   const { base_url, poster_sizes } = image;
   const navigate = useNavigate();
-
-  console.log(details);
+  const location = useLocation();
+  const { from } = location.state;
 
   const genresString = () => {
     if (!genres?.length) {
@@ -40,7 +40,7 @@ const MovieDetailsPage = () => {
     const fetchMovieDetails = async () => {
       try {
         const details = await getMovieDetails(movieId);
-        setDetails(prevState => ({ ...prevState, ...details }));
+        setDetails(details);
       } catch (error) {
         console.log(error.message);
       } finally {
@@ -63,11 +63,12 @@ const MovieDetailsPage = () => {
     fetchImageSettings();
   }, []);
 
-  const handleBack = evt => {
-    navigate(-1);
-    setDetails({});
-    setImage({});
-  };
+  // const handleBack = evt => {
+  //   navigate(from);
+  //   setDetails({});
+  //   setImage({});
+  // };
+  const handleBack = useCallback(() => navigate(from), [navigate, from]);
 
   return (
     <>
@@ -83,7 +84,7 @@ const MovieDetailsPage = () => {
         <div>
           <h2 className={scss.title}>{title}</h2>
           <p className={scss.text}>
-            User score: {`${vote_average?.toFixed(2) * 10}%`}
+            User score: {`${(vote_average?.toFixed(2) * 100) / 10}%`}
           </p>
 
           <h3 className={scss.subTitle}>Overiew:</h3>

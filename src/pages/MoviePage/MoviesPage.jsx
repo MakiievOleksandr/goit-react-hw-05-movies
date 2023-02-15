@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 
 import SearchMovieForm from 'components/module/SearchMovieForm/SearchMovieForm';
 
@@ -9,6 +9,7 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('query');
+  const location = useLocation();
 
   useEffect(() => {
     if (!search) {
@@ -37,7 +38,9 @@ const MoviesPage = () => {
       <ul>
         {movies.map(({ title, id }) => (
           <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
+            <Link to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </Link>
           </li>
         ))}
       </ul>
