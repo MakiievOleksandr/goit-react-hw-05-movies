@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Outlet, useLocation } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 
 import AddInfoLinks from 'components/module/Cast/AddInfoLinks';
 
@@ -89,8 +89,10 @@ const MovieDetailsPage = () => {
           <p className={scss.text}>{genresString()}</p>
         </div>
       </div>
-      <AddInfoLinks />
-      <Outlet />
+      <Suspense>
+        <AddInfoLinks />
+        <Outlet />
+      </Suspense>
     </>
   );
 };
